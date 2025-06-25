@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JGD_ELETRÔNICOS - Sua Loja de Componentes e Peças de Informática</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --primary-blue: #2196F3; /* Azul mais claro */
+            --light-blue: #64B5F6;
+            --dark-blue: #1976D2;
+            --text-color-dark: #000000;
+            --text-color-light: #f4f7f6;
+            --background-light: #f4f7f6;
+            --background-dark: #2c3e50;
+            --card-background: #ffffff;
+            --border-color: #e0e0e0;
+            --button-success: #27ae60;
+            --button-success-hover: #229954;
+        }
+
+        /* Estilos CSS */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-color-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--background-dark);
+            color: var(--text-color-light);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 18px;
+        }
+
+        nav ul li a {
+            color: var(--text-color-light);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .search-bar {
+            background-color: #f0f0f0;
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-bar input[type="text"] {
+            width: 60%;
+            max-width: 500px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 1em;
+            outline: none;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-bar button {
+            background-color: var(--primary-blue);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1500x550/2196F3/ecf0f1?text=Componentes+Eletronicos') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 120px 20px;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+            animation: slideInUp 1s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-blue); /* Botão principal com azul mais claro */
+            color: #fff;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: var(--text-color-dark);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-blue);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--text-color-dark);
+        }
+
+        .product-card .price {
+            font-size: 1.6em;
+            color: var(--primary-blue); /* Preço com azul mais claro */
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-card .add-to-cart-btn {
+            background-color: var(--button-success);
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .product-card .add-to-cart-btn:hover {
+            background-color: var(--button-success-hover);
+        }
+
+        .testimonials {
+            background-color: var(--background-light);
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px auto;
+            max-width: 750px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .testimonial-card i {
+            color: var(--primary-blue);
+            font-size: 2em;
+            position: absolute;
+            top: 15px;
+            left: 20px;
+        }
+
+        .testimonial-card p:last-child {
+            font-weight: bold;
+            margin-top: 20px;
+            color: var(--text-color-dark);
+            font-size: 1.1em;
+        }
+
+        .new-arrivals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .brand-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 0;
+            background-color: var(--card-background);
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-top: 60px;
+        }
+
+        .brand-logos img {
+            max-height: 80px;
+            max-width: 150px;
+            filter: grayscale(80%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .brand-logos img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: var(--background-dark);
+            color: var(--text-color-light);
+            padding: 40px 20px;
+            margin-top: 60px;
+            font-size: 0.95em;
+        }
+
+        footer .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        footer .footer-section h3 {
+            color: var(--light-blue);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        footer .footer-section p, footer .footer-section ul {
+            color: #bdc3c7;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        footer .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        footer .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-section ul li a:hover {
+            color: var(--text-color-light);
+        }
+
+        footer .social-icons a {
+            color: var(--text-color-light);
+            font-size: 1.8em;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: var(--primary-blue);
+        }
+
+        footer .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+            margin-top: 30px;
+            color: #bdc3c7;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            .product-grid, .new-arrivals-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+            .search-bar input[type="text"] {
+                width: 80%;
+            }
+            .search-bar button {
+                margin-top: 10px;
+                margin-left: 0;
+            }
+            .hero {
+                padding: 80px 20px;
+            }
+            .hero h2 {
+                font-size: 2.2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .product-grid, .new-arrivals-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            footer .footer-section {
+                text-align: center;
+            }
+            footer .social-icons {
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            .search-bar input[type="text"] {
+                width: 90%;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .product-card img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JGD_ELETRÔNICOS</h1>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="#produtos"><i class="fas fa-microchip"></i> Produtos</a></li>
+                <li><a href="#categorias"><i class="fas fa-list"></i> Categorias</a></li>
+                <li><a href="#novidades"><i class="fas fa-star"></i> Novidades</a></li>
+                <li><a href="#marcas"><i class="fas fa-building"></i> Marcas</a></li>
+                <li><a href="#sobre-nos"><i class="fas fa-info-circle"></i> Sobre Nós</a></li>
+                <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
+        <button id="searchButton"><i class="fas fa-search"></i> Pesquisar</button>
+    </div>
+
+    <section class="hero">
+        <h2>Seu Destino para Componentes Eletrônicos e Peças de Informática</h2>
+        <p>Encontre tudo o que você precisa para seus projetos de eletrônica, desde resistores e capacitores até os mais modernos componentes para seu PC.</p>
+        <a href="#produtos" class="btn">Explorar Produtos <i class="fas fa-arrow-right"></i></a>
+    </section>
+
+    <div class="container">
+        <h2 id="produtos">Produtos em Destaque</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="61P39LA75pL.__AC_SY300_SX300_QL70_ML2_.jpg" alt="SSD Sandisk">
+                <h3>SSD Sandisk Plus 1TB SATA III 2,5</h3>
+                <p class="price">R$ 419,80</p>
+                <button class="add-to-cart-btn" data-product-id="1">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="511kq8UfTNL._AC_SX679_.jpg" alt="Cooler">
+                <h3>C3Tech Cooler FC-20BK para Processador Intel</h3>
+                <p class="price">R$ 29,50</p>
+                <button class="add-to-cart-btn" data-product-id="2">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="41S+pmXAU-L._AC_SY879_.jpg" alt="Memoria">
+                <h3>Memória 32GB DDR4 3200Mhz FURY Beast</h3>
+                <p class="price">R$ 557,78</p>
+                <button class="add-to-cart-btn" data-product-id="3">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="615nL8mMYkL._AC_SX679_ (1).jpg" alt="Processador">
+                <h3>Processador AMD Ryzen 7 8700G</h3>
+                <p class="price">R$ 1.829,80</p>
+                <button class="add-to-cart-btn" data-product-id="4">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="placamae.jpg" alt="Placa Mãe">
+                <h3>Placa Mãe Asus PRIME B550M-A (AM4/DDR4/VGA/DVI-D/HDMI/M.2/USB3.2)</h3>
+                <p class="price">R$ 899,00</p>
+                <button class="add-to-cart-btn" data-product-id="5">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="fonte.jpg" alt="Fonte ATX">
+                <h3>Fonte de Alimentação Gamdias Cyclops M1-750B - 750W, 80 Plus, Bronze, PFC Ativo, RGB, S/Cabo</h3>
+                <p class="price">R$ 422,80</p>
+                <button class="add-to-cart-btn" data-product-id="6">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="cabo.jpg" alt="Cabo HDMI">
+                <h3>CABO HDMI 2.1 8K 3D 19 PINOS - 3 METROS</h3>
+                <p class="price">R$ 60,00</p>
+                <button class="add-to-cart-btn" data-product-id="7">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="gabinete.jpg" alt="Gabinete Gamer">
+                <h3>Gabinete Gamer Branco GB1791 4 fans RGB Micro-Atx Em vidro temperado</h3>
+                <p class="price">R$ 399,90</p>
+                <button class="add-to-cart-btn" data-product-id="8">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2 id="novidades">Novidades na Loja</h2>
+        <div class="new-arrivals-grid product-grid">
+            <div class="product-card">
+                <img src="teclado.jpg" alt="Teclado Mecânico">
+                <h3>TECLADO MECÂNICO GAMER REDRAGON VALHEIM ILUMINAÇÃO RAINBOW PRETO SWITCH BROWN K608-R (PT-BROWN)</h3>
+                <p class="price">R$ 209,00</p>
+                <button class="add-to-cart-btn" data-product-id="9">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="mouse.jpg" alt="Mouse Gamer">
+                <h3>Mouse Gamer Logitech G203 LIGHTSYNC RGB, Efeito de Ondas de Cores, 6 Botões Programáveis e Até 8.000 DPI - Preto</h3>
+                <p class="price">R$ 158,90</p>
+                <button class="add-to-cart-btn" data-product-id="10">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="monitor.jpg" alt="Monitor Gamer">
+                <h3>Monitor Gamer AOC DESTINY 25" 240Hz 0,5ms FreeSync Premium 25G3ZM</h3>
+                <p class="price">R$ 1.250,00</p>
+                <button class="add-to-cart-btn" data-product-id="11">Adicionar ao Carrinho <i class="fas fa-cart-plus"></i></button>
+            </div>
+        </div>
+    </div>
+
+            <section class="testimonials">
+        <div class="container">
+            <h2>O que nossos clientes dizem</h2>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"Minha loja favorita de eletrônicos. A qualidade é sempre impecável."</p>
+            </div>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>Sobre a JGD_ELETRÔNICOS</h3>
+                <p>Para quem busca confiança e inovação em componentes eletrônicos e peças de informática, nossa loja online é o seu destino certo. </p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section links">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#novidades">Novidades</a></li>
+                    <li><a href="#sobre-nos">Sobre Nós</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <h3>Contato</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Escola Tecnica de Bralãndia</p>
+                <p><i class="fas fa-phone"></i> (61) 998409852</p>
+                <p><i class="fas fa-envelope"></i> contato@jgdeletronicos.com.br</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 JGD_ELETRÔNICOS. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para adicionar ao carrinho (simulação)
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.dataset.productId;
+                    alert(`Produto ${productId} adicionado ao carrinho! (Simulação)`);
+                });
+            });
+
+            // JavaScript para funcionalidade de pesquisa (simples)
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+
+            searchButton.addEventListener('click', () => {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                if (searchTerm) {
+                    alert(`Você pesquisou por: "${searchTerm}". (Simulação de pesquisa)`);
+                } else {
+                    alert("Por favor, digite algo para pesquisar.");
+                }
+            });
+
+            // Permite pesquisar ao pressionar Enter no campo de busca
+            searchInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    searchButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
